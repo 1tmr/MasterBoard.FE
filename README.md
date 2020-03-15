@@ -1,2 +1,2 @@
-# study_app
-Application made for study for Node.js
+# Master Board.FE
+A Node.JS Application made for GUI of Master Board, designed to support real life RPG games.
