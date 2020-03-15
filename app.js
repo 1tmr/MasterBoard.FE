@@ -2,7 +2,7 @@
 const express = require('express'),
       http = require('http');
 // adding new routes
-const info   = require('./routes/info');
+const index   = require('./routes/index');
 
 // here we are initializing our application with EXPRESS libraries
 var app = express();
@@ -14,13 +14,8 @@ app.set('view engine', 'pug');
 // place Bootstrap CSS
 app.use('/static', express.static('static'));
 
-// this will let us get a return when we open the URL
-app.get('/', function (req,res) {
-  res.send("HELLO THERE!");
-});
-
-app.use('/info', info);
-app.use('/admin/user', admUsr);
+app.use('/', index);
+//app.use('/admin/user', admUsr);
 
 // this deck is initalizing HTTP protocol
 http.createServer(app).listen(app.get('port'), function() {

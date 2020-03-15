@@ -1,0 +1,16 @@
+extend wrapper
+
+block content
+  .container-fluid
+    form(method="post" action="admin/user/add" enctype="application/json").text-left
+      .form-group.row
+        label.col-sm-2.col-form-label(for="login") login
+        input#name.form-control.col-sm-10(type="text" name="login")
+      .form-group.row
+        label.col-sm-2.col-form-label(for="email") email
+        input#email.form-control.col-sm-10(type="email" name="email")
+      .form-group.row
+        label.col-sm-2.col-form-label(for="passwd") password
+        input#passwd.form-control.col-sm-10(type="password" name="passwd")
+      hr.md-4
+      button.btn.btn-primary.btn-lg.btn-block(type="submit") Create
