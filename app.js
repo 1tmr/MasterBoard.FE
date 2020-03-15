@@ -8,7 +8,7 @@ const info   = require('./routes/info');
 var app = express();
 // this will set a PORT of the application, so we will connect it with
 // localhost:3000
-app.set('port', 3000);
+app.set('port', 80);
 // set html builder engine
 app.set('view engine', 'pug');
 // place Bootstrap CSS
