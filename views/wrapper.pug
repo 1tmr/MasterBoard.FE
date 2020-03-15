@@ -1,0 +1,16 @@
+extend layout
+
+block wrapper
+  nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
+    a.navbar-brand(href="#") MasterBoard
+    button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarMenu" aria-control="navbarMenu" aria-expanded="false" aria-label="Toggle navigation")
+      span.navbar-toggler-icon
+    .collapse.navbar-collapse#navbarMenu
+      ul.navbar-nav.mr-auto.mt-2.mt-lg-0
+        li.nav-item.active
+          a.nav-link(href="#") Home
+      ul.navbar-nav.my-2.my-lg-0
+        li.nav-item.active
+          a.nav-link(href="#") Login
+
+  block content
