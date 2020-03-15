@@ -1,0 +1,16 @@
+{
+  "name": "Master Board.FE",
+  "version": "0.0.1",
+  "description": "Master Board, Front End part",
+  "main": "app.js",
+  "directories": {
+    "views": "./views",
+    "routes": "./routes",
+    "static": "./static"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+  }
+}
