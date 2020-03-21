@@ -13,9 +13,6 @@ app.use('/static', express.static('static'));
 // attach all routes in one script
 app.use('/', routes);
 // this deck is initalizing HTTP protocol
-function startApp() {
-  return app.listen(app.get('port'), function() {
-    console.log('running on ' + app.get('port'));
-  });
-};
-startApp();
+function startApp() {return app.listen(app.get('port'));};
+
+module.exports = startApp;
