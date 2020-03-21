@@ -1,0 +1,22 @@
+extend wrapper
+
+block content
+  .container-fluid
+    .py-5.text-center
+      .row
+        .col-md-4.offset-md-4
+          h4.bm-3 Sign Up
+          form(method="post" action="/signup" enctype="application/json")
+            .row
+              label(for="email") e-mail
+              input#email.form-control(type="email" name="email" value)
+            .row
+              label(for="password") password
+              input#password.form-control(type="password" name="password" value)
+            .row
+              label(for="password_rep") password repeat
+              input#password_rep.form-control(type="password" name="password_rep" value)
+            hr.md-4
+            button.btn.btn-primary.btn-lg.btn-block(type="submit") Sign Up
+          .py-5.text-center
+            a(href="/login") Login

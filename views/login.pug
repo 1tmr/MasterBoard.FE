@@ -1,0 +1,19 @@
+extend wrapper
+
+block content
+  .container-fluid
+    .py-5.text-center
+      .row
+        .col-md-4.offset-md-4
+          h4.bm-3 Login
+          form(method="post" action="/login" enctype="application/json")
+            .row
+              label(for="login") login
+              input#login.form-control(type="text" name="login" value)
+            .row
+              label(for="password") password
+              input#password.form-control(type="password" name="password" value)
+            hr.md-4
+            button.btn.btn-primary.btn-lg.btn-block(type="submit") Login
+          .py-5.text-center
+            a(href="/signup") Create new account
