@@ -13,9 +13,11 @@ describe("top", () =>{
     delete require.cache[require.resolve('./test_app')];
     app = require('./test_app')();
   });
+
   importTest("Test home page", "./test/t_index");
   importTest("Test login page", "./test/t_login");
   importTest("Test sign up page", "./test/t_signup");
+
   afterEach((done) => {
     app.close(done);
   });
