@@ -27,6 +27,15 @@ describe("AGGREGATED SET of UNIT TESTS", () =>{
     importTest("2.2. See calendar with events", "./test/home/t_calendar");
     importTest("2.3. See my games UI", "./test/home/t_game");
     importTest("2.4. Create own Game", "./test/home/games/t_create");
+    importTest("2.5. Apply for open Game", "./test/home/games/t_apply");
+  });
+
+  describe("3. As Admin I want to", () => {
+    importTest("3.1. Been able to manage the game", "./test/home/games/t_manage");
+  });
+
+  describe("4. As Player I want to", () => {
+    importTest("4.1. Been able to see the game", "./test/home/games/t_browse");
   });
 
   afterEach((done) => {
