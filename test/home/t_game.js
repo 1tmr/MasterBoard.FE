@@ -6,7 +6,7 @@ const url = common.url;
 const path = '/game'
 
 
-describe('that is able to', () => {
+describe('2.3.1. that is able to', () => {
   it("show up with 200 status", (done) =>{
     chai.request(url).get(path).end(
       (err, res) => {
@@ -22,8 +22,16 @@ describe('that is able to', () => {
         res.text.should.contain('<li class="nav-item"><a class="nav-link" href="/calendar">Game Calendar</a></li>');
         res.text.should.contain('<li class="nav-item active"><a class="nav-link" href="/game">My Games</a></li>');
         res.text.should.contain('<li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>');
-        res.text.should.contain('<div class="row-fluid"><h1> Welcome to your Games Board</h1></div>');
+        res.text.should.contain('<div class="row-fluid"><h1>Welcome to your Games Board</h1></div>');
         done();
+      }
+    );
+  });
+  it("allow to create a game", (done) =>{
+    chai.request(url).get(path).end(
+      (err, res) => {
+          res.text.should.contain('<a class="btn btn-primary col-sm-4" href="/admin/create">Create Game</a>');
+          done();
       }
     );
   })

@@ -4,7 +4,7 @@ const should = chai.should();
 const expect = chai.expect;
 const url = common.url;
 
-describe('that is able to', () => {
+describe('2.1.1. that is able to', () => {
   it("show up with 200 status", (done) =>{
     chai.request(url).get('/home').end(
       (err, res) => {

@@ -4,7 +4,7 @@ const should = chai.should();
 const expect = chai.expect;
 const url = common.url;
 
-describe('Sign up UI validation', () =>{
+describe('1.3.1. Sign up UI validation', () =>{
   it('Should return status 200', done => {
     chai.request(url).get('/signup').end(
       (err, req) =>{
@@ -15,7 +15,7 @@ describe('Sign up UI validation', () =>{
   });
 });
 
-describe('Should have signup dialogs', () =>{
+describe('1.3.2. Should have signup dialogs', () =>{
   it('should be at sign up page', done => {
     chai.request(url).get('/signup').end(
       (err, res) =>{

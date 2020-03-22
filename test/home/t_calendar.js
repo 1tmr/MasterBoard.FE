@@ -6,7 +6,7 @@ const url = common.url;
 const path = '/calendar'
 
 
-describe('that is able to', () => {
+describe('2.2.1. that is able to', () => {
   it("show up with 200 status", (done) =>{
     chai.request(url).get(path).end(
       (err, res) => {
@@ -22,7 +22,7 @@ describe('that is able to', () => {
         res.text.should.contain('<li class="nav-item active"><a class="nav-link" href="/calendar">Game Calendar</a></li>');
         res.text.should.contain('<li class="nav-item"><a class="nav-link" href="/game">My Games</a></li>');
         res.text.should.contain('<li class="nav-item"><a class="nav-link" href="/profile">Profile</a></li>');
-        res.text.should.contain('<div class="row-fluid"><h1> Welcome to Master Board</h1></div>');
+        res.text.should.contain('<div class="row-fluid"><h1> Upcoming events</h1></div>');
         done();
       }
     );

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 router.get('/', (req, res) => {
-  res.render('home/index', {title: "Game Board News", _path: "/home"});
+  res.render('home/admin/create', {title: "Create a Game", _path: "/game"});
 });
 
 module.exports = router;

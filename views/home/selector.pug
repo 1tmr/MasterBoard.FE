@@ -3,7 +3,7 @@ extend wrapper
 block content
   .container-fluid
     .row-fluid
-      h1  Welcome to your Games Board
+      h1 Welcome to your Games Board
     .row
       .col-sm-3
         .card
@@ -13,7 +13,7 @@ block content
             h5.card-title If you need to start new game...
             h6.card-subtitle.mb-2.text-muted
             p.card-text If you are going to create this game...
-            a.btn.btn-primary(href="/game/create") Launch Game
+            a.btn.btn-primary.col-sm-4(href="/admin/create") Create Game
     br
     .row
       .col-sm-3
@@ -22,13 +22,19 @@ block content
             h4 Game 1
           .card-body
             h5.card-title Game 1 description
-            h6.card-subtitle.mb-2.text-muted Will start on 22 Sep 2020 12:39
-            p.card-text Here will be guide how to use me
+            p.card-text This game is about...
+            a.btn.btn-primary.col-sm-4(href="/admin/1") Manage
+            a.btn.btn-primary.col-sm-4.offset-md-1(href="/game/1") Enter
+          .card-footer.text-muted
+            h6 Will start on 22 Sep 2020 12:39
+
       .col-sm-3
         .card
           .card-header
             h4 Game 2
           .card-body
             h5.card-title Game 2 description
-            h6.card-subtitle.mb-2.text-muted Will start on 22 Mar 2021 12:39
-            p.card-text Here will be guide how to use me
+            p.card-text This game is about...
+            button.btn.btn-primary.col-sm-4(type="button" href="/game/2") Enter
+          .card-footer.text-muted
+            h6 Will start on 22 Mar 2021 12:39

@@ -1,0 +1,26 @@
+extend ../wrapper
+
+block content
+  .container-fluid
+    .py-5.text-center
+      .row
+        .col-md-4.offset-md-4
+          h4.bm-3 Create your Game
+          form(method="post" action="/admin/create" enctype="application/json")
+            .row
+              label(for="name") Name*
+              input.form-control#name(type="text" name="name" placeholder="Game's name (mandatory)" value required)
+            .row
+              label(for="descr") Description
+              textarea.form-control#descr(type="text" name="descr" placeholder="Your game's descriptoin (optional)" value)
+            .row
+              label(for="startdate") Start date*
+              input.form-control#startdate(type="date" name="startdate" value required)
+            .row
+              label(for="dur") Duration
+              input.form-control#dur(type="number" name="dur" value="1")
+            .row
+              label(for="region") Region
+              input.form-control#region(type="text" name="region" value)
+            hr.md-4
+            button.btn.btn-primary.btn-lg.btn-block(type="submit") Create

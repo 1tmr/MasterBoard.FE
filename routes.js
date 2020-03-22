@@ -1,13 +1,10 @@
 const express  = require('express');
-// adding new routes
-const index    = require('./routes/index');
-const home     = require('./routes/home/home');
-const calendar = require('./routes/home/calendar');
-const game     = require('./routes/home/game');
 // club all together
 var routes = express();
-routes.use('/', index);
-routes.use('/home', home);
-routes.use('/calendar', calendar);
-routes.use('/game', game);
+routes.use('/', require('./routes/index'));
+routes.use('/home', require('./routes/home'));
+routes.use('/calendar', require('./routes/calendar'));
+routes.use('/game', require('./routes/game'));
+routes.use('/admin', require('./routes/admin'));
+// export upwards
 module.exports = routes;
