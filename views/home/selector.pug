@@ -1,0 +1,34 @@
+extend wrapper
+
+block content
+  .container-fluid
+    .row-fluid
+      h1  Welcome to your Games Board
+    .row
+      .col-sm-3
+        .card
+          .card-header
+            h4 Create new game
+          .card-body
+            h5.card-title If you need to start new game...
+            h6.card-subtitle.mb-2.text-muted
+            p.card-text If you are going to create this game...
+            a.btn.btn-primary(href="/game/create") Launch Game
+    br
+    .row
+      .col-sm-3
+        .card
+          .card-header
+            h4 Game 1
+          .card-body
+            h5.card-title Game 1 description
+            h6.card-subtitle.mb-2.text-muted Will start on 22 Sep 2020 12:39
+            p.card-text Here will be guide how to use me
+      .col-sm-3
+        .card
+          .card-header
+            h4 Game 2
+          .card-body
+            h5.card-title Game 2 description
+            h6.card-subtitle.mb-2.text-muted Will start on 22 Mar 2021 12:39
+            p.card-text Here will be guide how to use me

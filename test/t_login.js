@@ -54,7 +54,7 @@ describe('Should have login dialogs', () =>{
   });
 });
 
-describe('Should be able to login to the database', () =>{
+describe('Should be able to login to the system', () =>{
   it('should be able to sent post message', done => {
     chai.request(url).post('/login')
     .set('enctype', 'application/json')
