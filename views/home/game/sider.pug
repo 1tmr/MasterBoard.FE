@@ -1,0 +1,29 @@
+extend ../wrapper
+
+block sider
+  .container-fluid
+    .row
+      nav.col-md-1.d-none.d-md-block.bg-light.sidebar
+        .sidebar-sticky
+          ul.nav.flex-column
+            li.nav-item
+              a.nav-link.active(href="game/2/news")
+                span.oi.oi-list-rich.nav-sb-icon
+                | News
+          ul.nav.flex-column
+            li.nav-item
+              a.nav-link(href="game/2/profile")
+                span.oi.oi-person.nav-sb-icon
+                | Profile
+          ul.nav.flex-column
+            li.nav-item
+              a.nav-link(href="game/2/contact")
+                span.oi.oi-people.nav-sb-icon
+                | Contact
+          ul.nav.flex-column
+            li.nav-item
+              a.nav-link(href="game/2/messages")
+                span.oi.oi-chat.nav-sb-icon
+                | Messages
+
+      block content
