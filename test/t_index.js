@@ -4,8 +4,8 @@ const should = chai.should();
 const expect = chai.expect;
 const url = common.url;
 
-describe('Root page validation', () =>{
-  it('Returns status 200', function(done){
+describe('1.1.1. that is able to', () =>{
+  it('bring 200 status for valid page', function(done){
     chai.request(url).get('/').end(
       (err, res) => {
         res.should.have.status(200);
@@ -14,7 +14,7 @@ describe('Root page validation', () =>{
     );
   });
 
-  it('Right content exists', function(done){
+  it('show correct content exists', function(done){
     chai.request(url).get('/').end(
       (err, res) => {
         res.text.should.contain("<h1> Welcome to Master Board</h1>");
@@ -24,7 +24,7 @@ describe('Root page validation', () =>{
     );
   });
 
-  it('Wrong content is not shown', function(done){
+  it('not show wrong content', function(done){
     chai.request(url).get('/').end(
       (err, res) => {
         res.text.should.not.contain("<h1> Hello user</h1>");
@@ -33,7 +33,7 @@ describe('Root page validation', () =>{
     );
   });
 
-  it('Wrong page returns 404', function(done){
+  it('return 404 status for invalid page', function(done){
     chai.request(url).get('/bad/request').end(
       (err, res) => {
         res.should.have.status(404);

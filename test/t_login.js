@@ -4,7 +4,7 @@ const should = chai.should();
 const expect = chai.expect;
 const url = common.url;
 
-describe('Login folder validation', () =>{
+describe('1.2.1. Login folder validation', () =>{
   it('Should return status 200', done => {
     chai.request(url).get('/login').end(
       (err, req) =>{
@@ -15,7 +15,7 @@ describe('Login folder validation', () =>{
   });
 });
 
-describe('Should have login dialogs', () =>{
+describe('1.2.2. Should have login dialogs', () =>{
   it('should be login page', done => {
     chai.request(url).get('/login').end(
       (err, res) =>{
@@ -54,7 +54,7 @@ describe('Should have login dialogs', () =>{
   });
 });
 
-describe('Should be able to login to the database', () =>{
+describe('1.2.3. Should be able to login to the system', () =>{
   it('should be able to sent post message', done => {
     chai.request(url).post('/login')
     .set('enctype', 'application/json')

@@ -1,22 +1,38 @@
 extend layout
 
 block wrapper
-  nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
-    a.navbar-brand(href="/home") MasterBoard
+  nav.navbar.navbar-expand-lg.navbar-dark.bg-dark.p-1(style='z-index:1000')
+    a.navbar-brand.col-md-1(href="/home") MasterBoard
     button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarMenu" aria-control="navbarMenu" aria-expanded="false" aria-label="Toggle navigation")
       span.navbar-toggler-icon
     .collapse.navbar-collapse#navbarMenu
       ul.navbar-nav.mr-auto.mt-2.mt-lg-0
-        li.nav-item.active
-          a.nav-link(href="/home") News
-        li.nav-item
-          a.nav-link(href="/home/calendar") Game Calendar
-        li.nav-item
-          a.nav-link(href="/home/games") My Games
+        if _path == '/home'
+          li.nav-item.active
+            a.nav-link(href="/home") News
+        else
+          li.nav-item
+            a.nav-link(href="/home") News
+        if _path == "/calendar"
+          li.nav-item.active
+            a.nav-link(href="/calendar") Game Calendar
+        else
+          li.nav-item
+            a.nav-link(href="/calendar") Game Calendar
+        if _path == "/game"
+          li.nav-item.active
+            a.nav-link(href="/game") My Games
+        else
+          li.nav-item
+            a.nav-link(href="/game") My Games
       ul.navbar-nav.my-2.my-lg-0
-        li.nav-item
-          a.nav-link(href="/home/profile") Profile
+        if _path == "/profile"
+          li.nav-item.active
+            a.nav-link(href="/profile") Profile
+        else
+          li.nav-item
+            a.nav-link(href="/profile") Profile
         li.nav-item
           a.nav-link(href="/logout") Sign Out
 
-  block content
+  block sider
