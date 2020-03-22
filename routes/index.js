@@ -9,15 +9,15 @@ router.get("/index", function(req,res){
 });
 
 router.get("/login", function(req, res){
-  res.render('login');
+  res.render('login', message = {status: 200});
 });
 
 router.post("/login", function(req, res){
   if(req.body.login == 'user@mail.com' && req.body.password == "password")
-    out = {result: "password correct"};
-  else
-    out = {result: "wrong password"};
-  res.json(out);
+    res.redirect('/home');
+  else{
+    res.render('login', message = {status: 500, warning: "wrong password"});
+  }
 })
 
 router.get("/signup", function(req, res){

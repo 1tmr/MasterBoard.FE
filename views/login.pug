@@ -6,6 +6,8 @@ block content
       .row
         .col-md-4.offset-md-4
           h4.bm-3 Login
+          if message.status == 500
+            .alert.alert-warning(role="alert")= message.warning
           form(method="post" action="/login" enctype="application/json")
             .row
               label(for="login") login
