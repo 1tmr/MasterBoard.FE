@@ -2,15 +2,20 @@ const common = require('../../common');
 const chai = common.chai;
 const should = chai.should();
 const expect = chai.expect;
+const authUser = common.authUser;
+const stopapp = common.stopapp;
 const url = common.url;
-const path = '/admin/create'
-
+const path = '/admin/create';
 
 describe('2.4.1. where he can', () => {
+  let authenticatedUser;
+  before(done =>{
+    authenticatedUser = authUser(done);
+  });
+
   it("show up with 200 status", (done) =>{
-    chai.request(url)
+    authenticatedUser
     .get(path)
-    .set("authorization", "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNTkwNTgyNTkyLCJpYXQiOjE1ODU0MDIxOTJ9.yL4Tu69s9rTNd_Tysu43y-PHOZOROKvQuf4-xQ-sReY")
     .end(
       (err, res) => {
         res.should.have.status(200);
@@ -19,9 +24,8 @@ describe('2.4.1. where he can', () => {
     );
   });
   it("see that he creates a game", done => {
-    chai.request(url)
+    authenticatedUser
     .get(path)
-    .set("authorization", "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNTkwNTgyNTkyLCJpYXQiOjE1ODU0MDIxOTJ9.yL4Tu69s9rTNd_Tysu43y-PHOZOROKvQuf4-xQ-sReY")
     .end(
       (err, res) => {
         res.text.should.contain('<h4 class="bm-3">Create your Game</h4>');
@@ -30,9 +34,8 @@ describe('2.4.1. where he can', () => {
     );
   });
   it("see mandatory fields", (done) =>{
-    chai.request(url)
+    authenticatedUser
     .get(path)
-    .set("authorization", "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNTkwNTgyNTkyLCJpYXQiOjE1ODU0MDIxOTJ9.yL4Tu69s9rTNd_Tysu43y-PHOZOROKvQuf4-xQ-sReY")
     .end(
       (err, res) => {
         res.text.should.contain('<label for="name">Name*</label>');
@@ -44,9 +47,8 @@ describe('2.4.1. where he can', () => {
     );
   });
   it("see optional fields", (done) =>{
-    chai.request(url)
+    authenticatedUser
     .get(path)
-    .set("authorization", "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNTkwNTgyNTkyLCJpYXQiOjE1ODU0MDIxOTJ9.yL4Tu69s9rTNd_Tysu43y-PHOZOROKvQuf4-xQ-sReY")
     .end(
       (err, res) => {
         res.text.should.contain('<label for="descr">Description</label>');
@@ -60,9 +62,8 @@ describe('2.4.1. where he can', () => {
     );
   });
   it("create a game", (done) =>{
-    chai.request(url)
+    authenticatedUser
     .get(path)
-    .set("authorization", "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNTkwNTgyNTkyLCJpYXQiOjE1ODU0MDIxOTJ9.yL4Tu69s9rTNd_Tysu43y-PHOZOROKvQuf4-xQ-sReY")
     .end(
       (err, res) => {
           res.text.should.contain('<form method="post" action="/admin/create" enctype="application/json">');
@@ -70,5 +71,7 @@ describe('2.4.1. where he can', () => {
           done();
       }
     );
-  })
+  });
+
+  after((done) => {stopapp(done);});
 });

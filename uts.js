@@ -1,7 +1,5 @@
 const common = require('./test/common');
-//const app = common.app;
 const chai = common.chai;
-const request = chai.request(app);
 var app;
 
 function importTest(testName, path){
@@ -11,15 +9,26 @@ function importTest(testName, path){
 }
 
 describe("AGGREGATED SET of UNIT TESTS", () =>{
-  beforeEach(() => {
-    delete require.cache[require.resolve('./test_app')];
-    app = require('./test_app')();
-  });
-
   describe("1. As a guest I want to", () => {
+    beforeEach(() => {
+      delete require.cache[require.resolve('./test_app')];
+      app = require('./test_app')();
+    });
+
     importTest("1.1. See home page", "./test/t_index");
     importTest("1.2. See login page", "./test/t_login");
     importTest("1.3. See sign up page", "./test/t_signup");
+
+    // negative tests
+    // importTest("1.4 Don't see home page", "./test/negative/t_news");
+    // importTest("1.5 Don't see home page", "./test/negative/t_calendar");
+    // importTest("1.5 Don't see home page", "./test/negative/t_game");
+    // importTest("1.5 Don't see home page", "./test/negative/t_create");
+    // importTest("1.5 Don't see home page", "./test/negative/t_apply");
+
+    afterEach((done) => {
+      app.close(done);
+    });
   });
 
   describe("2. As Logged In User I want to", () => {
@@ -36,9 +45,5 @@ describe("AGGREGATED SET of UNIT TESTS", () =>{
 
   describe("4. As Player I want to", () => {
     importTest("4.1. Been able to see the game", "./test/home/games/t_browse");
-  });
-
-  afterEach((done) => {
-    app.close(done);
   });
 });

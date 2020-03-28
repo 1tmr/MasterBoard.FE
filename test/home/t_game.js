@@ -3,14 +3,18 @@ const chai = common.chai;
 const should = chai.should();
 const expect = chai.expect;
 const url = common.url;
-const path = '/game'
-
+const path = '/game';
+const authUser = common.authUser;
 
 describe('2.3.1. that is able to', () => {
+  let authenticatedUser;
+  before(done =>{
+    authenticatedUser = authUser(done);
+  });
+
   it("show up with 200 status", (done) =>{
-    chai.request(url)
+    authenticatedUser
     .get(path)
-    .set("authorization", "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNTkwNTgyNTkyLCJpYXQiOjE1ODU0MDIxOTJ9.yL4Tu69s9rTNd_Tysu43y-PHOZOROKvQuf4-xQ-sReY")
     .end(
       (err, res) => {
         res.should.have.status(200);
@@ -19,9 +23,8 @@ describe('2.3.1. that is able to', () => {
     );
   });
   it("show available games", (done) =>{
-    chai.request(url)
+    authenticatedUser
     .get(path)
-    .set("authorization", "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNTkwNTgyNTkyLCJpYXQiOjE1ODU0MDIxOTJ9.yL4Tu69s9rTNd_Tysu43y-PHOZOROKvQuf4-xQ-sReY")
     .end(
       (err, res) => {
         res.text.should.contain('<li class="nav-item"><a class="nav-link" href="/home">News</a></li>');
@@ -34,14 +37,16 @@ describe('2.3.1. that is able to', () => {
     );
   });
   it("allow to create a game", (done) =>{
-    chai.request(url)
+    authenticatedUser
     .get(path)
-    .set("authorization", "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNTkwNTgyNTkyLCJpYXQiOjE1ODU0MDIxOTJ9.yL4Tu69s9rTNd_Tysu43y-PHOZOROKvQuf4-xQ-sReY")
     .end(
       (err, res) => {
           res.text.should.contain('<a class="btn btn-primary col-sm-4" href="/admin/create">Create Game</a>');
           done();
       }
     );
-  })
+  });
+  after((done) => {
+    common.stopapp(done);
+  });
 });
