@@ -2,8 +2,8 @@
 const express = require('express'),
       bodyParser   = require('body-parser'),
       cookieParser = require('cookie-parser'),
-      http = require('http'),
-      routes = require('./routes');
+      http = require('http');
+
 // here we are initializing our application with EXPRESS libraries
 var app = express();
 // this will set a PORT of the application, so we will connect it with
@@ -16,7 +16,7 @@ app.set('view engine', 'pug');
 // place Bootstrap CSS
 app.use('/static', express.static('static'));
 // attach all routes in one script
-app.use('/', routes);
+app.use('/', require('./routes'));
 
 require('./config/passport');
 // this deck is initalizing HTTP protocol

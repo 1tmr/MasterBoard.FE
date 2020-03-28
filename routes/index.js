@@ -1,5 +1,11 @@
 const router = require('express').Router();
 
+router.use('/home', require('./home'));
+router.use('/calendar', require('./calendar'));
+router.use('/game', require('./game'));
+router.use('/admin', require('./admin'));
+
+
 router.get("/", function (req, res){
   res.render('index');
 });
