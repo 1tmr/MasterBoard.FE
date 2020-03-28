@@ -26,11 +26,10 @@ router.post("/", auth.optional, function(req, res, next){
     if(passportUser){
       const user = passportUser;
       user.token = passportUser.generateJWT();
-//      user.token = user.password;
-      console.log('hello '+user.email);
 
       return res
             .status(200)
+            .cookie('token', user.token)
             .redirect('/home');
     }
     return res.status(400).render('login', message = {status: 500, warning: "incorrect username and password"});

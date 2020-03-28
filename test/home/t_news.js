@@ -6,7 +6,10 @@ const url = common.url;
 
 describe('2.1.1. that is able to', () => {
   it("show up with 200 status", (done) =>{
-    chai.request(url).get('/home').end(
+    chai.request(url)
+    .get('/home')
+    .set("authorization", "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNTkwNTgyNTkyLCJpYXQiOjE1ODU0MDIxOTJ9.yL4Tu69s9rTNd_Tysu43y-PHOZOROKvQuf4-xQ-sReY")
+    .end(
       (err, res) => {
         res.should.have.status(200);
         done();
@@ -14,7 +17,10 @@ describe('2.1.1. that is able to', () => {
     );
   });
   it("show a welcome news", (done) =>{
-    chai.request(url).get('/home').end(
+    chai.request(url)
+    .get('/home')
+    .set("authorization", "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNTkwNTgyNTkyLCJpYXQiOjE1ODU0MDIxOTJ9.yL4Tu69s9rTNd_Tysu43y-PHOZOROKvQuf4-xQ-sReY")
+    .end(
       (err, res) => {
         res.text.should.contain('<li class="nav-item active"><a class="nav-link" href="/home">News</a></li>');
         res.text.should.contain('<li class="nav-item"><a class="nav-link" href="/calendar">Game Calendar</a></li>');

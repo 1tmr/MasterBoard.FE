@@ -10,7 +10,7 @@ function getJWT(){
     email: this.email,
     id: this._id,
     exp: parseInt(expDate.getTime() / 1000, 10)
-  }, 'secret');
+  }, 'BW1MlE1tmNVsXrVosIwbRFBIPzvkDE0t');
 }
 
 function toAuthJson(){
@@ -29,13 +29,10 @@ var data = {
 module.exports = {
   find: (email) => {
     if(data.uid1.email == email){
-        console.log('uid1');
         return data.uid1;
     } else if (data.uid2.email == email){
-        console.log('uid2');
         return data.uid2;
     } else {
-      console.log('null');
       return null;
     }
   },
@@ -48,7 +45,7 @@ module.exports = {
       email: this.email,
       id: this._id,
       exp: parseInt(expDate.getTime() / 1000, 10)
-    }, 'secret');
+    }, 'BW1MlE1tmNVsXrVosIwbRFBIPzvkDE0t');
   },
   toAuthJSON: () => {
     return {

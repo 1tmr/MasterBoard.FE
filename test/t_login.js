@@ -58,9 +58,9 @@ describe('1.2.3. Should be able to login to the system', () =>{
   it('should be able to sent post message', done => {
     chai.request(url).post('/login')
     .set('enctype', 'application/json')
-    .send({login: "test@mail.com", password: "password"})
+    .send({login: "test@mail.com", password: "pass"})
     .end((err, res)=>{
-        res.should.have.status(200);
+        res.should.have.status(400);
         done();
       });
   });
@@ -70,19 +70,20 @@ describe('1.2.3. Should be able to login to the system', () =>{
       .set('enctype', 'application/json')
       .send({login: "test@mail.com", password: "password"})
       .end((err, res) =>{
-        res.should.have.status(200);
+        res.should.have.status(400);
         done();
       });
   });
 
   it('should be able to connect with correct credentials', done =>{
-    chai.request(url).post('/login')
+    chai.request(url)
+      .post('/login')
       .set('enctype', 'application/json')
-      .send({login: "user@mail.com", password: "password"})
+      .set("authorization", "Token eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAbWFpbC5jb20iLCJpZCI6MSwiZXhwIjoxNTkwNTgyNTkyLCJpYXQiOjE1ODU0MDIxOTJ9.yL4Tu69s9rTNd_Tysu43y-PHOZOROKvQuf4-xQ-sReY")
+      .send({login: "test@mail.com", password: "1234"})
       .end((err, res) =>{
-        //console.log(res.req.path);
+        console.log(res.req.path);
         expect(res.req.path).to.equal("/home");
-        //expect(res.body).to.deep.equal({result: "password correct"});
         done();
       });
   });
@@ -93,7 +94,7 @@ describe('1.2.3. Should be able to login to the system', () =>{
       .send({login: "test@mail.com", password: "password"})
       .end((err, res) =>{
         res.text.should.contain('<h4 class="bm-3">Login</h4>');
-        res.text.should.contain('<div class="alert alert-warning" role="alert">wrong password</div>');
+        res.text.should.contain('<div class="alert alert-warning" role="alert">incorrect username and password</div>');
         done();
       });
   });

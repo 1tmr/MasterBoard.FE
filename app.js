@@ -20,17 +20,32 @@ app.use(cookieParser());
 app.set('view engine', 'pug');
 // place Bootstrap CSS
 app.use('/static', express.static('static'));
-app.use(session({ secret: 'passport-tutorial', cookie: { maxAge: 60000 }, resave: false, saveUninitialized: false }));
+// make configurational changes
+app.use(session({
+    secret: 'BW1MlE1tmNVsXrVosIwbRFBIPzvkDE0t',
+    cookie: { maxAge: 60000 },
+    resave: false,
+    saveUninitialized: false
+}));
+
+app.use((req, res, next)=>{
+  if(req.cookies.token !== undefined){
+    req.headers["authorization"] = "Token " + req.cookies.token;
+  }
+  return next();
+});
+
 if(!isProd){
   app.use(logger('dev'));
   app.use(errorHandler());
 };
-// attach all routes in one script
+
 require('./config/passport');
+// attach routes in one script
 app.use('/', routes);
 // error logging
 if(!isProd){
-  console.log('NONE PROD');
+  console.log('NONPROD');
   app.use((err,req,res)=>{
     res.status(err.status||500);
     res.json({errors: {message: err.message, error: err}});
