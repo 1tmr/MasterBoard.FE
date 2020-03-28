@@ -16,9 +16,8 @@ app.set('view engine', 'pug');
 // place Bootstrap CSS
 app.use('/static', express.static('static'));
 // attach all routes in one script
-app.use('/', require('./routes'));
-
 require('./config/passport');
+app.use('/', require('./routes'));
 // this deck is initalizing HTTP protocol
 function startApp() {return app.listen(app.get('port'));};
 
