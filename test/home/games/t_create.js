@@ -2,13 +2,21 @@ const common = require('../../common');
 const chai = common.chai;
 const should = chai.should();
 const expect = chai.expect;
+const authUser = common.authUser;
+const stopapp = common.stopapp;
 const url = common.url;
-const path = '/admin/create'
-
+const path = '/admin/create';
 
 describe('2.4.1. where he can', () => {
+  let authenticatedUser;
+  before(done =>{
+    authenticatedUser = authUser(done);
+  });
+
   it("show up with 200 status", (done) =>{
-    chai.request(url).get(path).end(
+    authenticatedUser
+    .get(path)
+    .end(
       (err, res) => {
         res.should.have.status(200);
         done();
@@ -16,7 +24,9 @@ describe('2.4.1. where he can', () => {
     );
   });
   it("see that he creates a game", done => {
-    chai.request(url).get(path).end(
+    authenticatedUser
+    .get(path)
+    .end(
       (err, res) => {
         res.text.should.contain('<h4 class="bm-3">Create your Game</h4>');
         done();
@@ -24,7 +34,9 @@ describe('2.4.1. where he can', () => {
     );
   });
   it("see mandatory fields", (done) =>{
-    chai.request(url).get(path).end(
+    authenticatedUser
+    .get(path)
+    .end(
       (err, res) => {
         res.text.should.contain('<label for="name">Name*</label>');
         res.text.should.contain('<input class="form-control" id="name" type="text" name="name" placeholder="Game\'s name (mandatory)" value required>');
@@ -35,7 +47,9 @@ describe('2.4.1. where he can', () => {
     );
   });
   it("see optional fields", (done) =>{
-    chai.request(url).get(path).end(
+    authenticatedUser
+    .get(path)
+    .end(
       (err, res) => {
         res.text.should.contain('<label for="descr">Description</label>');
         res.text.should.contain('<textarea class="form-control" id="descr" type="text" name="descr" placeholder="Your game\'s descriptoin (optional)" value>');
@@ -48,12 +62,16 @@ describe('2.4.1. where he can', () => {
     );
   });
   it("create a game", (done) =>{
-    chai.request(url).get(path).end(
+    authenticatedUser
+    .get(path)
+    .end(
       (err, res) => {
           res.text.should.contain('<form method="post" action="/admin/create" enctype="application/json">');
           res.text.should.contain('<button class="btn btn-primary btn-lg btn-block" type="submit">Create</button>');
           done();
       }
     );
-  })
+  });
+
+  after((done) => {stopapp(done);});
 });

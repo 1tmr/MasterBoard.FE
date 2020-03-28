@@ -1,8 +1,8 @@
-const router = require('express').Router();
+const router = require('express').Router(),
+      auth = require('./auth');
 
-router.get('/', (req, res) => {
-  res.render('home/index', {title: "Game Board News", _path: "/home"});
+router.get('/', auth.require, (req, res) => {
+  return res.render('home/index', {title: "Game Board News", _path: "/home"});
 });
 
 module.exports = router;
-  
