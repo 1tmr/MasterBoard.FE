@@ -1,25 +1,14 @@
-const jwt = require('express-jwt');
-
-const getHeadersToken = (req) =>{
-  const {headers: {authorization} } = req;
-  if(authorization && authorization.split(' ')[0] === 'Token') {
-    return authorization.split(' ')[1];
-  };
-  return null;
-};
+function isLoggedIn(req, res, next) {
+  if(req.isAuthenticated()) {
+      return next();
+  } else {
+      return res.redirect('/');
+  }
+}
 
 const auth = {
-  require: jwt({
-    secret: 'BW1MlE1tmNVsXrVosIwbRFBIPzvkDE0t',
-    userProperty: 'payload',
-    getToken: getHeadersToken
-  }),
-  optional: jwt({
-    secret: 'BW1MlE1tmNVsXrVosIwbRFBIPzvkDE0t',
-    userProperty: 'payload',
-    getToken: getHeadersToken,
-    credentialsRequired: false
-  })
-};
+  require: isLoggedIn,
+  optional: (req, res, next)=>{return next();}
+}
 
 module.exports = auth;

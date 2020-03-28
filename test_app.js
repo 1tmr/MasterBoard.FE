@@ -4,9 +4,6 @@ const express = require('express'),
       cookieParser = require('cookie-parser'),
       session = require('express-session'),
       routes = require('./routes');
-//
-const isProd = process.env.NODE_ENV === 'production';
-
 // here we are initializing our application with EXPRESS libraries
 var app = express();
 // this will set a PORT of the application, so we will connect it with
@@ -33,7 +30,8 @@ app.use((req, res, next)=>{
   return next();
 });
 
-require('./config/passport');
+// add passport
+require('./config/passport')(app);
 // attach routes in one script
 app.use('/', routes);
 // this deck is initalizing HTTP protocol

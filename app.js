@@ -6,9 +6,8 @@ const express = require('express'),
       logger = require('morgan'),
       routes = require('./routes'),
       errorHandler = require('errorhandler');
-//
+// set non PROD environment
 const isProd = process.env.NODE_ENV === 'production';
-
 // here we are initializing our application with EXPRESS libraries
 var app = express();
 // this will set a PORT of the application, so we will connect it with
@@ -27,20 +26,13 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
-
-app.use((req, res, next)=>{
-  if(req.cookies.token !== undefined){
-    req.headers["authorization"] = "Token " + req.cookies.token;
-  }
-  return next();
-});
-
+// if we are in DEV, let's treat errors properly
 if(!isProd){
   app.use(logger('dev'));
   app.use(errorHandler());
 };
-
-require('./config/passport');
+// add passport
+require('./config/passport')(app);
 // attach routes in one script
 app.use('/', routes);
 // error logging
